@@ -1,0 +1,528 @@
+/* Suporte opcional caso você baixe e coloque o arquivo FairyDust.ttf na pasta */
+@font-face {
+  font-family: "Fairy Dust";
+  src: local("Fairy Dust"), local("FairyDustB"), url("FairyDust.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* Variáveis de cores pastéis (Tema Claro) */
+:root {
+  --fundo-pagina: #ffdce8;
+  --bolinha-fundo: #ffffff;
+  --fundo-cartao: #fffafd;
+  --borda-suave: #f7cad8;
+  --texto-principal: #5a424c;
+  --texto-suave: #8c6d7a;
+  --rosa-pastel: #ffd6e5;
+  --rosa-destaque: #ff8fb8;
+  --lilas-pastel: #efe4ff;
+  --creme-pastel: #fff9eb;
+  --madeira-suave: #e6c7a8;
+  --sombra-fofa: 0 8px 22px rgba(214, 146, 173, 0.24);
+}
+
+/* Tema Escuro aconchegante (noite pastel com bolinhas) */
+body.tema-escuro {
+  --fundo-pagina: #261c2a;
+  --bolinha-fundo: rgba(255, 214, 229, 0.14);
+  --fundo-cartao: #302535;
+  --borda-suave: #543e5c;
+  --texto-principal: #fcebf2;
+  --texto-suave: #cbb3c4;
+  --rosa-pastel: #4d354b;
+  --rosa-destaque: #d97aa2;
+  --lilas-pastel: #3c2f4d;
+  --creme-pastel: #3d3442;
+  --madeira-suave: #8c6d53;
+  --sombra-fofa: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fundo rosinha com bolinhas brancas (Polka Dots) */
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: var(--fundo-pagina);
+  background-image:
+    radial-gradient(var(--bolinha-fundo) 22%, transparent 23%),
+    radial-gradient(var(--bolinha-fundo) 22%, transparent 23%);
+  background-size: 44px 44px;
+  background-position: 0 0, 22px 22px;
+  color: var(--texto-principal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container-jogo {
+  width: 100%;
+  max-width: 620px;
+  background-color: var(--fundo-cartao);
+  border: 3px solid var(--borda-suave);
+  border-radius: 28px;
+  padding: 16px;
+  box-shadow: var(--sombra-fofa);
+  position: relative;
+}
+
+/* Cabeçalho e título na fonte Fairy Dust (sem estrelas) */
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.titulo-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icone-titulo {
+  font-size: 1.6rem;
+}
+
+.titulo-area h1 {
+  font-family: "Fairy Dust", "FairyDustB", "Brush Script MT", "Lucida Handwriting", "Segoe Script", cursive;
+  font-size: 2.35rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #e86b9d;
+  text-shadow: 0 2px 0 #ffffff;
+  line-height: 1;
+}
+
+body.tema-escuro .titulo-area h1 {
+  color: #ffb8d4;
+  text-shadow: 0 2px 6px rgba(255, 143, 184, 0.45);
+}
+
+.controles-topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.indicador-momento {
+  background-color: var(--lilas-pastel);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.botao-tema {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 2px solid var(--borda-suave);
+  background-color: var(--rosa-pastel);
+  color: var(--texto-principal);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* Abas dos dois cenários */
+.abas-cenario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.aba {
+  min-height: 46px;
+  border-radius: 16px;
+  border: 2px solid var(--borda-suave);
+  background-color: var(--creme-pastel);
+  color: var(--texto-principal);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.aba.ativa {
+  background-color: var(--rosa-pastel);
+  border-color: var(--rosa-destaque);
+}
+
+/* Palco dos cenários */
+.palco-cenario {
+  position: relative;
+  height: 300px;
+  border-radius: 22px;
+  border: 2px solid var(--borda-suave);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  margin-bottom: 14px;
+  background-color: #ffe3ee;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.7) 18%, transparent 19%),
+    radial-gradient(rgba(255, 255, 255, 0.7) 18%, transparent 19%);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+body.tema-escuro .palco-cenario {
+  background-color: #38293e;
+  background-image:
+    radial-gradient(rgba(255, 214, 229, 0.12) 18%, transparent 19%),
+    radial-gradient(rgba(255, 214, 229, 0.12) 18%, transparent 19%);
+}
+
+.palco-cenario.cenario-comida {
+  background-color: #fff3f7;
+}
+
+body.tema-escuro .palco-cenario.cenario-comida {
+  background-color: #3d2e42;
+}
+
+/* Elementos visuais do Quarto Cutecore */
+.decoracao-quarto,
+.decoracao-comida {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.luzinhas {
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0.85;
+  padding-top: 4px;
+  letter-spacing: 6px;
+}
+
+.estante-pelucias {
+  position: absolute;
+  left: 14px;
+  top: 34px;
+  width: 86px;
+  background-color: var(--fundo-cartao);
+  border: 2px solid var(--borda-suave);
+  border-radius: 12px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prateleira {
+  background-color: var(--rosa-pastel);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  padding: 4px 2px;
+}
+
+.caminha-madeira {
+  position: absolute;
+  right: 14px;
+  bottom: 44px;
+  width: 112px;
+  height: 54px;
+  background-color: var(--madeira-suave);
+  border-radius: 10px 10px 4px 4px;
+  border: 2px solid #c7a483;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colchao-felpudo {
+  width: 96px;
+  height: 36px;
+  background-color: #ffdce8;
+  border-radius: 8px;
+  border: 2px dashed #f5a9c4;
+}
+
+.tapete-rosa {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 56px;
+  background-color: #ffe8f0;
+  border: 3px dashed var(--rosa-destaque);
+  border-radius: 50%;
+}
+
+/* Elementos visuais do Canto da Comida */
+.grade-branca {
+  position: absolute;
+  inset: 10px;
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.55) 0px,
+    rgba(255, 255, 255, 0.55) 3px,
+    transparent 3px,
+    transparent 26px
+  );
+  opacity: 0.75;
+}
+
+.bebedouro-tigelas {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  background-color: var(--fundo-cartao);
+  padding: 6px 10px;
+  border-radius: 14px;
+  border: 2px solid var(--borda-suave);
+}
+
+.garrafinha-agua {
+  font-size: 1.2rem;
+}
+
+.tigela-rosa {
+  background-color: var(--rosa-pastel);
+  border: 2px solid var(--rosa-destaque);
+  border-radius: 8px 8px 14px 14px;
+  padding: 2px 6px;
+  font-size: 0.95rem;
+}
+
+.almofada-listrada {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 62px;
+  border-radius: 20px;
+  border: 3px solid #ffffff;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffffff 0px,
+    #ffffff 14px,
+    #f9d5e2 14px,
+    #f9d5e2 28px
+  );
+}
+
+/* Balão de pedido */
+.balao-pedido {
+  position: relative;
+  z-index: 3;
+  background-color: var(--fundo-cartao);
+  border: 2px solid var(--rosa-destaque);
+  border-radius: 18px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.icone-pedido {
+  font-size: 1.35rem;
+}
+
+.balao-pedido p {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* Coelhinho Pretinho Pixel Art */
+.coelhinho-botao {
+  position: relative;
+  z-index: 3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  min-width: 154px;
+  min-height: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coelhinho-corpo {
+  position: relative;
+  width: 154px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: respirar-suave 2.6s infinite ease-in-out;
+}
+
+.sprite-coelho {
+  width: 150px;
+  height: 118px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 5px 6px rgba(130, 82, 105, 0.22));
+}
+
+.lagrima-pixel {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.coelhinho-corpo.triste .lagrima-pixel {
+  opacity: 1;
+}
+
+.efeito-coracao {
+  position: absolute;
+  top: -2px;
+  right: 8px;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 5;
+}
+
+.efeito-coracao.mostrar {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+/* Mensagem de status */
+.mensagem-status {
+  position: relative;
+  z-index: 3;
+  background-color: var(--fundo-cartao);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  border: 1px solid var(--borda-suave);
+  text-align: center;
+}
+
+/* Botões de cuidado (mínimo 44px para celular e PC) */
+.painel-acoes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.botao-acao {
+  min-height: 58px;
+  min-width: 44px;
+  border-radius: 16px;
+  border: 2px solid var(--borda-suave);
+  background-color: var(--rosa-pastel);
+  color: var(--texto-principal);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.2s ease;
+}
+
+.botao-acao:hover,
+.botao-acao:focus-visible {
+  background-color: var(--rosa-destaque);
+  color: #ffffff;
+}
+
+.botao-acao:active {
+  transform: scale(0.96);
+}
+
+.emoji-acao {
+  font-size: 1.25rem;
+}
+
+/* Tela Final */
+.tela-final {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 232, 242, 0.95);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+  text-align: center;
+}
+
+body.tema-escuro .tela-final {
+  background-color: rgba(35, 27, 38, 0.95);
+}
+
+.cartao-final {
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.emoji-final {
+  font-size: 2.5rem;
+}
+
+.botao-reiniciar {
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--rosa-destaque);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.escondido {
+  display: none !important;
+}
+
+@keyframes respirar-suave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coelhinho-corpo {
+    animation: none;
+  }
+  * {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .painel-acoes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

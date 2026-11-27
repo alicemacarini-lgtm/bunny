@@ -1,0 +1,16 @@
+{
+  "slug": "bunny",
+  "title": "Bunny",
+  "author": "Autor(a)",
+  "authorClass": "Ensino Fundamental 2",
+  "discipline": "Livre",
+  "grades": ["6º ano", "7º ano", "8º ano", "9º ano"],
+  "tags": ["coelho", "fofinho", "cutecore", "cuidados", "relaxante"],
+  "description": "Cuide de um coelhinho pretinho em um quarto cutecore e no canto da comida em tons pastéis.",
+  "instructions": "Alterne entre o Quarto Fofinho e o Canto da Comida e clique nos botões para dar comida, água, carinho, brincadeira ou colocar o Bunny para dormir.",
+  "duration": "2-4 min",
+  "version": "1.0.0",
+  "entry": "index.html",
+  "cover": "cover.svg",
+  "createdAt": "2026-11-27"
+}

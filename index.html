@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bunny</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container-jogo" id="app">
+    <!-- Cabeçalho simples e acolhedor -->
+    <header class="cabecalho">
+      <div class="titulo-area">
+        <span class="icone-titulo" aria-hidden="true">🐰</span>
+        <h1>Bunny</h1>
+      </div>
+      <div class="controles-topo">
+        <span class="indicador-momento" id="texto-momento">Momento 1 de 6</span>
+        <button type="button" class="botao-tema" id="botao-tema" aria-label="Alternar tema claro ou escuro">
+          ☀️ / 🌙
+        </button>
+      </div>
+    </header>
+
+    <!-- Seletor dos dois cenários -->
+    <nav class="abas-cenario" aria-label="Escolher cômodo">
+      <button type="button" class="aba ativa" id="aba-quarto" data-cenario="quarto">
+        🛏️ Quarto Fofinho
+      </button>
+      <button type="button" class="aba" id="aba-comida" data-cenario="comida">
+        🍓 Canto da Comida
+      </button>
+    </nav>
+
+    <!-- Palco principal onde o coelhinho fica -->
+    <section class="palco-cenario cenario-quarto" id="palco" aria-live="polite">
+      <!-- Decoração do Quarto Cutecore -->
+      <div class="decoracao-quarto" id="decoracao-quarto">
+        <div class="luzinhas">✨ ⭐ ✨ ⭐ ✨</div>
+        <div class="estante-pelucias" aria-hidden="true">
+          <div class="prateleira">🧸 🐰 ☁️</div>
+          <div class="prateleira">🎀 🐱 🌸</div>
+        </div>
+        <div class="caminha-madeira" aria-hidden="true">
+          <div class="colchao-felpudo"></div>
+        </div>
+        <div class="tapete-rosa" aria-hidden="true"></div>
+      </div>
+
+      <!-- Decoração do Canto da Comida -->
+      <div class="decoracao-comida escondido" id="decoracao-comida">
+        <div class="grade-branca" aria-hidden="true"></div>
+        <div class="bebedouro-tigelas" aria-hidden="true">
+          <div class="garrafinha-agua">💧</div>
+          <div class="tigela-rosa">🥣</div>
+          <div class="tigela-rosa">🍓</div>
+        </div>
+        <div class="almofada-listrada" aria-hidden="true"></div>
+      </div>
+
+      <!-- Balão de pensamento do coelhinho -->
+      <div class="balao-pedido" id="balao-pedido">
+        <span class="icone-pedido" id="icone-pedido">🥕</span>
+        <p id="texto-pedido">Oi! Estou com fominha de manhã...</p>
+      </div>
+
+      <!-- O Coelhinho Pretinho em Pixel Art (Grade Limpa e Sem Falhas) -->
+      <button type="button" class="coelhinho-botao" id="coelhinho" aria-label="Fazer carinho no coelhinho pretinho">
+        <div class="coelhinho-corpo feliz" id="coelhinho-visual">
+          <svg class="sprite-coelho" viewBox="0 0 32 24" shape-rendering="crispEdges" aria-hidden="true">
+            <!-- Silhueta / Contorno externo contínuo -->
+            <path fill="#130f17" d="
+              M 4,2 h 3 v 1 h 1 v 2 h 1 v 4 h 2 v -6 h 1 v -1 h 3 v 1 h 1 v 2 h 1 v 5 h 4 v -2 h 1 v -1 h 4 v 1 h 1 v 1 h 1 v 4 h -1 v 1 h -1 v 5 h -1 v 1 h -1 v 1 h -22 v -1 h -2 v -2 h 1 v -1 h 1 v -3 h 1 v -2 h 1 v -2 h -1 v -6 h 1 Z
+            "/>
+            <!-- Pelagem preta principal -->
+            <path fill="#27212d" d="
+              M 4,3 h 3 v 7 h -3 Z
+              M 12,3 h 3 v 7 h -3 Z
+              M 5,10 h 12 v 1 h 3 v 1 h 4 v 1 h 1 v 6 h -1 v 1 h -18 v -1 h -1 v -3 h -1 v -3 h 1 Z
+              M 2,18 h 3 v 2 h -3 Z
+              M 22,8 h 4 v 1 h 1 v 4 h -1 v 1 h -4 v -1 h -1 v -4 h 1 Z
+            "/>
+            <!-- Volume / Brilho suave nas costas, cabeça e rabinho -->
+            <path fill="#383042" d="
+              M 7,10 h 8 v 1 h 4 v 1 h 2 v 2 h -12 v -1 h -2 Z
+              M 22,8 h 3 v 1 h 1 v 3 h -1 v 1 h -3 v -1 h -1 v -3 h 1 Z
+              M 4,3 h 1 v 2 h -1 Z
+              M 12,3 h 1 v 2 h -1 Z
+            "/>
+            <!-- Sombra da base e da patinha -->
+            <path fill="#1b1620" d="
+              M 5,19 h 19 v 1 h -19 Z
+              M 2,19 h 3 v 1 h -3 Z
+              M 12,17 h 3 v 1 h -3 Z
+            "/>
+            <!-- Interior rosa das orelhas -->
+            <path fill="#f7a8c9" d="
+              M 5,4 h 1 v 6 h -1 Z
+              M 13,4 h 1 v 6 h -1 Z
+            "/>
+            <path fill="#ffd6e8" d="
+              M 5,4 h 1 v 3 h -1 Z
+              M 13,4 h 1 v 3 h -1 Z
+            "/>
+            <!-- Olhos fechadinhos fofos -->
+            <path fill="#9d89ab" d="
+              M 5,14 h 2 v 1 h -2 Z
+              M 10,14 h 2 v 1 h -2 Z
+            "/>
+            <!-- Bochechinhas rosadas -->
+            <path fill="#f28cb6" opacity="0.65" d="
+              M 4,15 h 1 v 1 h -1 Z
+              M 12,15 h 1 v 1 h -1 Z
+            "/>
+            <!-- Focinho rosa -->
+            <path fill="#ff8fbc" d="
+              M 7,16 h 3 v 1 h -3 Z
+              M 8,17 h 1 v 1 h -1 Z
+            "/>
+            <!-- Lagrimazinha (aparece quando está tristinho) -->
+            <path class="lagrima-pixel" fill="#7dd3fc" d="
+              M 6,15 h 1 v 2 h -1 Z
+              M 11,15 h 1 v 2 h -1 Z
+            "/>
+          </svg>
+        </div>
+        <span class="efeito-coracao" id="efeito-coracao" aria-hidden="true">💖</span>
+      </button>
+
+      <!-- Mensagem amigável de retorno -->
+      <div class="mensagem-status" id="mensagem-status">
+        Cuide do Bunny no seu ritmo!
+      </div>
+    </section>
+
+    <!-- Botões de ações para cuidar do coelhinho -->
+    <section class="painel-acoes" aria-label="Ações de cuidado">
+      <button type="button" class="botao-acao" data-acao="comer">
+        <span class="emoji-acao">🥕</span>
+        <span>Comidinha</span>
+      </button>
+      <button type="button" class="botao-acao" data-acao="agua">
+        <span class="emoji-acao">💧</span>
+        <span>Aguinha</span>
+      </button>
+      <button type="button" class="botao-acao" data-acao="carinho">
+        <span class="emoji-acao">💖</span>
+        <span>Carinho</span>
+      </button>
+      <button type="button" class="botao-acao" data-acao="brincar">
+        <span class="emoji-acao">🧶</span>
+        <span>Brincar</span>
+      </button>
+      <button type="button" class="botao-acao" data-acao="dormir">
+        <span class="emoji-acao">🌙</span>
+        <span>Dormir</span>
+      </button>
+    </section>
+
+    <!-- Tela final relaxante após os 6 momentos -->
+    <section class="tela-final escondido" id="tela-final">
+      <div class="cartao-final">
+        <div class="emoji-final">😴💤✨</div>
+        <h2>Boa noite, Bunny!</h2>
+        <p id="texto-final">
+          Você cuidou com muito carinho do seu coelhinho pretinho o dia inteiro. Ele foi dormir bem quentinho e feliz!
+        </p>
+        <button type="button" class="botao-reiniciar" id="botao-reiniciar">
+          🌸 Cuidar de novo
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>

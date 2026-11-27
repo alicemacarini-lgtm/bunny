@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    
+    <pattern id="bolinhasBrancas" width="90" height="90" patternUnits="userSpaceOnUse">
+      <rect width="90" height="90" fill="#ffdce8" />
+      <circle cx="22" cy="22" r="11" fill="#ffffff" opacity="0.9" />
+      <circle cx="67" cy="67" r="11" fill="#ffffff" opacity="0.9" />
+    </pattern>
+  </defs>
+
+  
+  <rect width="1600" height="900" fill="url(#bolinhasBrancas)" />
+
+  
+  <ellipse cx="800" cy="680" rx="390" ry="86" fill="#fff2f7" stroke="#ff8fb8" stroke-width="8" stroke-dasharray="22 14" />
+
+  
+  <g transform="translate(480, 225) scale(20)">
+    
+    <path fill="#130f17" d="
+      M 4,2 h 3 v 1 h 1 v 2 h 1 v 4 h 2 v -6 h 1 v -1 h 3 v 1 h 1 v 2 h 1 v 5 h 4 v -2 h 1 v -1 h 4 v 1 h 1 v 1 h 1 v 4 h -1 v 1 h -1 v 5 h -1 v 1 h -1 v 1 h -22 v -1 h -2 v -2 h 1 v -1 h 1 v -3 h 1 v -2 h 1 v -2 h -1 v -6 h 1 Z
+    " />
+    
+    <path fill="#27212d" d="
+      M 4,3 h 3 v 7 h -3 Z
+      M 12,3 h 3 v 7 h -3 Z
+      M 5,10 h 12 v 1 h 3 v 1 h 4 v 1 h 1 v 6 h -1 v 1 h -18 v -1 h -1 v -3 h -1 v -3 h 1 Z
+      M 2,18 h 3 v 2 h -3 Z
+      M 22,8 h 4 v 1 h 1 v 4 h -1 v 1 h -4 v -1 h -1 v -4 h 1 Z
+    " />
+    
+    <path fill="#383042" d="
+      M 7,10 h 8 v 1 h 4 v 1 h 2 v 2 h -12 v -1 h -2 Z
+      M 22,8 h 3 v 1 h 1 v 3 h -1 v 1 h -3 v -1 h -1 v -3 h 1 Z
+      M 4,3 h 1 v 2 h -1 Z
+      M 12,3 h 1 v 2 h -1 Z
+    " />
+    
+    <path fill="#1b1620" d="
+      M 5,19 h 19 v 1 h -19 Z
+      M 2,19 h 3 v 1 h -3 Z
+      M 12,17 h 3 v 1 h -3 Z
+    " />
+    
+    <path fill="#f7a8c9" d="
+      M 5,4 h 1 v 6 h -1 Z
+      M 13,4 h 1 v 6 h -1 Z
+    " />
+    <path fill="#ffd6e8" d="
+      M 5,4 h 1 v 3 h -1 Z
+      M 13,4 h 1 v 3 h -1 Z
+    " />
+    
+    <path fill="#9d89ab" d="
+      M 5,14 h 2 v 1 h -2 Z
+      M 10,14 h 2 v 1 h -2 Z
+    " />
+    
+    <path fill="#f28cb6" opacity="0.65" d="
+      M 4,15 h 1 v 1 h -1 Z
+      M 12,15 h 1 v 1 h -1 Z
+    " />
+    
+    <path fill="#ff8fbc" d="
+      M 7,16 h 3 v 1 h -3 Z
+      M 8,17 h 1 v 1 h -1 Z
+    " />
+  </g>
+
+  
+  <rect x="570" y="742" width="460" height="106" rx="53" fill="#ffffff" stroke="#ff9ec2" stroke-width="6" />
+  <text x="800" y="816" font-family="&#39;Fairy Dust&#39;, &#39;FairyDustB&#39;, &#39;Brush Script MT&#39;, &#39;Lucida Handwriting&#39;, &#39;Segoe Script&#39;, cursive" font-size="84" fill="#e86b9d" text-anchor="middle" letter-spacing="2">
+    Bunny
+  </text>
+</svg>
