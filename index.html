@@ -8,65 +8,101 @@
 </head>
 <body>
   <main class="container-jogo" id="app">
-    <!-- Cabeçalho simples e acolhedor -->
+    <!-- Cabeçalho com título Fairy Dust e controles -->
     <header class="cabecalho">
       <div class="titulo-area">
         <span class="icone-titulo" aria-hidden="true">🐰</span>
         <h1>Bunny</h1>
       </div>
       <div class="controles-topo">
-        <span class="indicador-momento" id="texto-momento">Momento 1 de 6</span>
+        <button type="button" class="botao-modo" id="botao-modo" title="Alternar entre Pedidos e Modo Livre">
+          🎲 Pedidos
+        </button>
         <button type="button" class="botao-tema" id="botao-tema" aria-label="Alternar tema claro ou escuro">
           ☀️ / 🌙
         </button>
       </div>
     </header>
 
-    <!-- Seletor dos dois cenários -->
-    <nav class="abas-cenario" aria-label="Escolher cômodo">
+    <!-- Seletor dos cenários + Customização rápida -->
+    <nav class="barra-navegacao" aria-label="Escolher cômodo ou estilo">
       <button type="button" class="aba ativa" id="aba-quarto" data-cenario="quarto">
-        🛏️ Quarto Fofinho
+        🛏️ Quarto
       </button>
       <button type="button" class="aba" id="aba-comida" data-cenario="comida">
-        🍓 Canto da Comida
+        🍓 Comida
+      </button>
+      <button type="button" class="aba aba-estilo" id="botao-laco">
+        🎀 Laço
+      </button>
+      <button type="button" class="aba aba-estilo" id="botao-decor">
+        🌸 Estilo
       </button>
     </nav>
 
-    <!-- Palco principal onde o coelhinho fica -->
-    <section class="palco-cenario cenario-quarto" id="palco" aria-live="polite">
-      <!-- Decoração do Quarto Cutecore -->
+    <!-- Palco principal interativo -->
+    <section class="palco-cenario cenario-quarto decor-rosa" id="palco" aria-live="polite">
+      <!-- Overlay de luz apagada (quando clica no abajur ou coloca para dormir) -->
+      <div class="filtro-noite escondido" id="filtro-noite"></div>
+
+      <!-- Decoração Interativa do Quarto Cutecore -->
       <div class="decoracao-quarto" id="decoracao-quarto">
-        <div class="luzinhas">✨ ⭐ ✨ ⭐ ✨</div>
-        <div class="estante-pelucias" aria-hidden="true">
-          <div class="prateleira">🧸 🐰 ☁️</div>
-          <div class="prateleira">🎀 🐱 🌸</div>
-        </div>
-        <div class="caminha-madeira" aria-hidden="true">
+        <div class="luzinhas" id="luzinhas">✨ ⭐ ✨ ⭐ ✨</div>
+
+        <!-- Estante de pelúcias clicável -->
+        <button type="button" class="objeto-interativo estante-pelucias" id="obj-estante" title="Chacoalhar pelúcias">
+          <div class="prateleira" id="prateleira-1">🧸 🐰 ☁️</div>
+          <div class="prateleira" id="prateleira-2">🎀 🐱 🌸</div>
+        </button>
+
+        <!-- Abajur clicável para apagar/acender a luz -->
+        <button type="button" class="objeto-interativo abajur-quarto" id="obj-abajur" title="Acender ou apagar abajur">
+          🏮
+        </button>
+
+        <!-- Bolinha de lã clicável no chão -->
+        <button type="button" class="objeto-interativo bolinha-la" id="obj-bola" title="Jogar bolinha de lã">
+          🧶
+        </button>
+
+        <!-- Caminha de madeira clicável -->
+        <button type="button" class="objeto-interativo caminha-madeira" id="obj-cama" title="Colocar Bunny na caminha">
           <div class="colchao-felpudo"></div>
-        </div>
-        <div class="tapete-rosa" aria-hidden="true"></div>
+        </button>
+
+        <div class="tapete-rosa" id="tapete-quarto" aria-hidden="true"></div>
       </div>
 
-      <!-- Decoração do Canto da Comida -->
+      <!-- Decoração Interativa do Canto da Comida -->
       <div class="decoracao-comida escondido" id="decoracao-comida">
         <div class="grade-branca" aria-hidden="true"></div>
-        <div class="bebedouro-tigelas" aria-hidden="true">
-          <div class="garrafinha-agua">💧</div>
-          <div class="tigela-rosa">🥣</div>
-          <div class="tigela-rosa">🍓</div>
+
+        <!-- Bebedouro e tigelas clicáveis -->
+        <div class="bebedouro-tigelas">
+          <button type="button" class="objeto-interativo item-tigela garrafinha-agua" id="obj-agua" title="Encher aguinha">
+            💧
+          </button>
+          <button type="button" class="objeto-interativo item-tigela tigela-rosa" id="obj-tigela-comida" title="Servir comidinha na tigela">
+            <span id="conteudo-tigela">🥣</span>
+          </button>
+          <div class="tigela-rosa" aria-hidden="true">🍓</div>
         </div>
+
         <div class="almofada-listrada" aria-hidden="true"></div>
       </div>
 
       <!-- Balão de pensamento do coelhinho -->
       <div class="balao-pedido" id="balao-pedido">
         <span class="icone-pedido" id="icone-pedido">🥕</span>
-        <p id="texto-pedido">Oi! Estou com fominha de manhã...</p>
+        <p id="texto-pedido">Oi! O que vamos fazer hoje?</p>
       </div>
 
-      <!-- O Coelhinho Pretinho em Pixel Art (Grade Limpa e Sem Falhas) -->
+      <!-- O Coelhinho Pretinho em Pixel Art -->
       <button type="button" class="coelhinho-botao" id="coelhinho" aria-label="Fazer carinho no coelhinho pretinho">
         <div class="coelhinho-corpo feliz" id="coelhinho-visual">
+          <!-- Acessório (Lacinho/Florzinha na cabeça) -->
+          <span class="acessorio-coelho escondido" id="acessorio-coelho" aria-hidden="true">🎀</span>
+
           <svg class="sprite-coelho" viewBox="0 0 32 24" shape-rendering="crispEdges" aria-hidden="true">
             <!-- Silhueta / Contorno externo contínuo -->
             <path fill="#130f17" d="
@@ -124,28 +160,36 @@
             "/>
           </svg>
         </div>
-        <span class="efeito-coracao" id="efeito-coracao" aria-hidden="true">💖</span>
+        <span class="efeito-flutuante" id="efeito-flutuante" aria-hidden="true">💖</span>
       </button>
+
+      <!-- Sub-menu de escolha de comidinhas (abre ao clicar em Comidinha) -->
+      <div class="menu-comidinhas escondido" id="menu-comidinhas" role="group" aria-label="Escolher comidinha">
+        <button type="button" class="opcao-comida" data-comida="cenoura">🥕 Cenoura</button>
+        <button type="button" class="opcao-comida" data-comida="morango">🍓 Morango</button>
+        <button type="button" class="opcao-comida" data-comida="alface">🥬 Folhinha</button>
+        <button type="button" class="opcao-comida" data-comida="biscoito">🍪 Biscoito</button>
+      </div>
 
       <!-- Mensagem amigável de retorno -->
       <div class="mensagem-status" id="mensagem-status">
-        Cuide do Bunny no seu ritmo!
+        Toque nos objetos do cenário ou nos botões abaixo!
       </div>
     </section>
 
     <!-- Botões de ações para cuidar do coelhinho -->
     <section class="painel-acoes" aria-label="Ações de cuidado">
       <button type="button" class="botao-acao" data-acao="comer">
-        <span class="emoji-acao">🥕</span>
+        <span class="emoji-acao">🍓</span>
         <span>Comidinha</span>
       </button>
       <button type="button" class="botao-acao" data-acao="agua">
         <span class="emoji-acao">💧</span>
         <span>Aguinha</span>
       </button>
-      <button type="button" class="botao-acao" data-acao="carinho">
-        <span class="emoji-acao">💖</span>
-        <span>Carinho</span>
+      <button type="button" class="botao-acao" data-acao="escovar">
+        <span class="emoji-acao">🪮</span>
+        <span>Escovar</span>
       </button>
       <button type="button" class="botao-acao" data-acao="brincar">
         <span class="emoji-acao">🧶</span>
@@ -155,20 +199,6 @@
         <span class="emoji-acao">🌙</span>
         <span>Dormir</span>
       </button>
-    </section>
-
-    <!-- Tela final relaxante após os 6 momentos -->
-    <section class="tela-final escondido" id="tela-final">
-      <div class="cartao-final">
-        <div class="emoji-final">😴💤✨</div>
-        <h2>Boa noite, Bunny!</h2>
-        <p id="texto-final">
-          Você cuidou com muito carinho do seu coelhinho pretinho o dia inteiro. Ele foi dormir bem quentinho e feliz!
-        </p>
-        <button type="button" class="botao-reiniciar" id="botao-reiniciar">
-          🌸 Cuidar de novo
-        </button>
-      </div>
     </section>
   </main>
 

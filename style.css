@@ -72,7 +72,7 @@ body {
   position: relative;
 }
 
-/* Cabeçalho e título na fonte Fairy Dust (sem estrelas) */
+/* Cabeçalho e título na fonte Fairy Dust */
 .cabecalho {
   display: flex;
   justify-content: space-between;
@@ -112,44 +112,43 @@ body.tema-escuro .titulo-area h1 {
   gap: 8px;
 }
 
-.indicador-momento {
-  background-color: var(--lilas-pastel);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
+.botao-modo,
 .botao-tema {
   min-width: 44px;
   min-height: 44px;
   padding: 0 12px;
   border-radius: 999px;
   border: 2px solid var(--borda-suave);
-  background-color: var(--rosa-pastel);
+  background-color: var(--lilas-pastel);
   color: var(--texto-principal);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
 }
 
-/* Abas dos dois cenários */
-.abas-cenario {
+.botao-tema {
+  background-color: var(--rosa-pastel);
+  font-size: 0.95rem;
+}
+
+/* Barra superior com 2 cenários + 2 customizações */
+.barra-navegacao {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
   margin-bottom: 12px;
 }
 
 .aba {
-  min-height: 46px;
-  border-radius: 16px;
+  min-height: 44px;
+  border-radius: 14px;
   border: 2px solid var(--borda-suave);
   background-color: var(--creme-pastel);
   color: var(--texto-principal);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.2s ease;
+  transition: transform 0.12s ease, background-color 0.2s ease;
 }
 
 .aba.ativa {
@@ -157,10 +156,14 @@ body.tema-escuro .titulo-area h1 {
   border-color: var(--rosa-destaque);
 }
 
+.aba-estilo {
+  background-color: var(--lilas-pastel);
+}
+
 /* Palco dos cenários */
 .palco-cenario {
   position: relative;
-  height: 300px;
+  height: 315px;
   border-radius: 22px;
   border: 2px solid var(--borda-suave);
   overflow: hidden;
@@ -176,6 +179,16 @@ body.tema-escuro .titulo-area h1 {
     radial-gradient(rgba(255, 255, 255, 0.7) 18%, transparent 19%);
   background-size: 36px 36px;
   background-position: 0 0, 18px 18px;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos customizáveis do quarto */
+.palco-cenario.decor-lilas {
+  background-color: #efe2ff;
+}
+
+.palco-cenario.decor-flor {
+  background-color: #e4f7ec;
 }
 
 body.tema-escuro .palco-cenario {
@@ -193,12 +206,35 @@ body.tema-escuro .palco-cenario.cenario-comida {
   background-color: #3d2e42;
 }
 
+/* Filtro de noite quando apaga o abajur */
+.filtro-noite {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(24, 15, 36, 0.58);
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Objetos clicáveis dentro dos cenários */
+.objeto-interativo {
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.objeto-interativo:hover {
+  transform: scale(1.06);
+}
+
+.objeto-interativo:active {
+  transform: scale(0.95);
+}
+
 /* Elementos visuais do Quarto Cutecore */
 .decoracao-quarto,
 .decoracao-comida {
   position: absolute;
   inset: 0;
-  pointer-events: none;
 }
 
 .luzinhas {
@@ -207,12 +243,13 @@ body.tema-escuro .palco-cenario.cenario-comida {
   opacity: 0.85;
   padding-top: 4px;
   letter-spacing: 6px;
+  pointer-events: none;
 }
 
 .estante-pelucias {
   position: absolute;
   left: 14px;
-  top: 34px;
+  top: 46px;
   width: 86px;
   background-color: var(--fundo-cartao);
   border: 2px solid var(--borda-suave);
@@ -221,33 +258,67 @@ body.tema-escuro .palco-cenario.cenario-comida {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  z-index: 3;
 }
 
 .prateleira {
   background-color: var(--rosa-pastel);
   border-radius: 8px;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   padding: 4px 2px;
+}
+
+.abajur-quarto {
+  position: absolute;
+  right: 18px;
+  top: 46px;
+  min-width: 44px;
+  min-height: 44px;
+  background-color: var(--fundo-cartao);
+  border: 2px solid var(--borda-suave);
+  border-radius: 50%;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.bolinha-la {
+  position: absolute;
+  left: 24px;
+  bottom: 48px;
+  min-width: 44px;
+  min-height: 44px;
+  background-color: var(--fundo-cartao);
+  border: 2px solid var(--borda-suave);
+  border-radius: 50%;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
 }
 
 .caminha-madeira {
   position: absolute;
   right: 14px;
   bottom: 44px;
-  width: 112px;
-  height: 54px;
+  width: 108px;
+  height: 52px;
   background-color: var(--madeira-suave);
   border-radius: 10px 10px 4px 4px;
   border: 2px solid #c7a483;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
 }
 
 .colchao-felpudo {
-  width: 96px;
-  height: 36px;
+  width: 92px;
+  height: 34px;
   background-color: #ffdce8;
   border-radius: 8px;
   border: 2px dashed #f5a9c4;
@@ -263,6 +334,17 @@ body.tema-escuro .palco-cenario.cenario-comida {
   background-color: #ffe8f0;
   border: 3px dashed var(--rosa-destaque);
   border-radius: 50%;
+  pointer-events: none;
+}
+
+.palco-cenario.decor-lilas .tapete-rosa {
+  background-color: #f3e8ff;
+  border-color: #b98eff;
+}
+
+.palco-cenario.decor-flor .tapete-rosa {
+  background-color: #fff6e5;
+  border-color: #82cfa5;
 }
 
 /* Elementos visuais do Canto da Comida */
@@ -279,31 +361,43 @@ body.tema-escuro .palco-cenario.cenario-comida {
     transparent 26px
   );
   opacity: 0.75;
+  pointer-events: none;
 }
 
 .bebedouro-tigelas {
   position: absolute;
-  top: 22px;
-  right: 20px;
+  top: 52px;
+  right: 18px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 6px;
   background-color: var(--fundo-cartao);
   padding: 6px 10px;
-  border-radius: 14px;
+  border-radius: 16px;
   border: 2px solid var(--borda-suave);
+  z-index: 3;
+}
+
+.item-tigela {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .garrafinha-agua {
-  font-size: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
 }
 
 .tigela-rosa {
   background-color: var(--rosa-pastel);
   border: 2px solid var(--rosa-destaque);
-  border-radius: 8px 8px 14px 14px;
-  padding: 2px 6px;
-  font-size: 0.95rem;
+  border-radius: 10px 10px 16px 16px;
+  padding: 2px 8px;
+  font-size: 1.05rem;
 }
 
 .almofada-listrada {
@@ -322,36 +416,37 @@ body.tema-escuro .palco-cenario.cenario-comida {
     #f9d5e2 14px,
     #f9d5e2 28px
   );
+  pointer-events: none;
 }
 
 /* Balão de pedido */
 .balao-pedido {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   background-color: var(--fundo-cartao);
   border: 2px solid var(--rosa-destaque);
   border-radius: 18px;
-  padding: 8px 14px;
+  padding: 7px 14px;
   display: flex;
   align-items: center;
   gap: 8px;
-  max-width: 90%;
+  max-width: 92%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 .icone-pedido {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
 }
 
 .balao-pedido p {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
 /* Coelhinho Pretinho Pixel Art */
 .coelhinho-botao {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   background: none;
   border: none;
   cursor: pointer;
@@ -373,6 +468,19 @@ body.tema-escuro .palco-cenario.cenario-comida {
   animation: respirar-suave 2.6s infinite ease-in-out;
 }
 
+.coelhinho-corpo.pulando {
+  animation: pulo-alegre 0.45s ease 2;
+}
+
+.acessorio-coelho {
+  position: absolute;
+  top: 26px;
+  left: 60px;
+  font-size: 1.25rem;
+  z-index: 5;
+  transform: rotate(10deg);
+}
+
 .sprite-coelho {
   width: 150px;
   height: 118px;
@@ -389,29 +497,61 @@ body.tema-escuro .palco-cenario.cenario-comida {
   opacity: 1;
 }
 
-.efeito-coracao {
+.efeito-flutuante {
   position: absolute;
   top: -2px;
   right: 8px;
   font-size: 1.5rem;
   opacity: 0;
   transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 5;
+  z-index: 6;
 }
 
-.efeito-coracao.mostrar {
+.efeito-flutuante.mostrar {
   opacity: 1;
   transform: translateY(-10px);
+}
+
+/* Sub-menu de seleção de comidinhas */
+.menu-comidinhas {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--fundo-cartao);
+  padding: 6px 10px;
+  border-radius: 16px;
+  border: 2px solid var(--rosa-destaque);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.opcao-comida {
+  min-height: 44px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--borda-suave);
+  background-color: var(--rosa-pastel);
+  color: var(--texto-principal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.opcao-comida:hover {
+  background-color: var(--rosa-destaque);
+  color: #ffffff;
 }
 
 /* Mensagem de status */
 .mensagem-status {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   background-color: var(--fundo-cartao);
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--texto-suave);
   border: 1px solid var(--borda-suave);
@@ -457,48 +597,6 @@ body.tema-escuro .palco-cenario.cenario-comida {
   font-size: 1.25rem;
 }
 
-/* Tela Final */
-.tela-final {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(255, 232, 242, 0.95);
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 10;
-  text-align: center;
-}
-
-body.tema-escuro .tela-final {
-  background-color: rgba(35, 27, 38, 0.95);
-}
-
-.cartao-final {
-  max-width: 360px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.emoji-final {
-  font-size: 2.5rem;
-}
-
-.botao-reiniciar {
-  min-height: 48px;
-  padding: 0 22px;
-  border-radius: 999px;
-  border: none;
-  background-color: var(--rosa-destaque);
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
 .escondido {
   display: none !important;
 }
@@ -512,8 +610,18 @@ body.tema-escuro .tela-final {
   }
 }
 
+@keyframes pulo-alegre {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .coelhinho-corpo {
+  .coelhinho-corpo,
+  .coelhinho-corpo.pulando {
     animation: none;
   }
   * {
@@ -521,7 +629,10 @@ body.tema-escuro .tela-final {
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 460px) {
+  .barra-navegacao {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .painel-acoes {
     grid-template-columns: repeat(3, 1fr);
   }
